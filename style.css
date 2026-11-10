@@ -40,3 +40,50 @@ nav li a.active {
   background-color: darkgoldenrod;
   color: #000;
 }
+/* Quantity Input Box Styles */
+input[type="number"] {
+  width: 60px;
+  padding: 5px;
+  font-size: 16px;
+  background-color: #222;
+  color: darkgoldenrod;
+  border: 1px solid darkgoldenrod;
+  border-radius: 4px;
+  text-align: center;
+}
+
+/* Cart Box Styling */
+.cart-box {
+  margin-top: 30px;
+  padding: 20px;
+  border: 2px solid darkgoldenrod;
+  border-radius: 8px;
+  width: 45%;
+  background-color: #111;
+}
+
+.cart-box h2 {
+  margin-top: 0;
+  font-size: 32px;
+  color: darkgoldenrod;
+}
+
+.cart-box ul {
+  list-style-type: square;
+  padding-left: 20px;
+  font-size: 18px;
+}
+
+.cart-box li {
+  margin-bottom: 8px;
+}
+
+.clear-btn {
+  background-color: #333;
+  color: darkgoldenrod;
+  margin-left: 10px;
+}
+
+.clear-btn:hover {
+  background-color: #555;
+}

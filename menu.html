@@ -2,56 +2,128 @@
 <html>
 <head>
   <link rel="stylesheet" href="style.css">
-  <title>Coffee Shack</title>
+  <title>Coffee Shack - Menu</title>
 </head>
 <body>
-<nav>
-  <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="menu.html">Menu</a></li>
-    <li><a href="contact.html">Contact Us</a></li>
-  </ul>
-</nav>
-<img src="Images\coffee.jfif" width="1000px" height="750px">
-<h1>MENU</h1>
-<table>
-  <tr>
-    <th>Sr No.</th>
-    <th>Item</th>
-    <th>Price</th>
-  </tr>
-  <tr>
-    <td>1</td>
-    <td>Latte</td>
-    <td>Rs.500</td>
-  </tr>
-  <tr>
-    <td>2</td>
-    <td>Americano</td>
-    <td>Rs.450</td>
-  </tr>
-  <tr>
-    <td>3</td>
-    <td>black</td>
-    <td>Rs.350</td>
-  </tr>
-  <tr>
-    <td>4</td>
-    <td>decaf</td>
-    <td>Rs.300</td>
-  </tr>
-  <tr>
-    <td>5</td>
-    <td>cold coffee</td>
-    <td>Rs.600</td>
-  </tr>
-</table>
-<button onclick="order()">Order</button>;
-<script>
-function order() {
-console.log("Order was made");
-window.alert("Your order has been placed");
-}
-</script>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html" class="active">Menu</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+    </ul>
+  </nav>
+
+  <img src="Images\coffee.jfif" width="1000px" height="750px">
+  
+  <h1>MENU</h1>
+  
+  <table id="menu-table">
+    <tr>
+      <th>Sr No.</th>
+      <th>Item</th>
+      <th>Price</th>
+      <th>Quantity</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td class="item-name">Latte</td>
+      <td>Rs.<span class="item-price">500</span></td>
+      <td><input type="number" class="item-qty" min="0" value="0" onchange="updateCart()"></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td class="item-name">Americano</td>
+      <td>Rs.<span class="item-price">450</span></td>
+      <td><input type="number" class="item-qty" min="0" value="0" onchange="updateCart()"></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td class="item-name">Black Coffee</td>
+      <td>Rs.<span class="item-price">350</span></td>
+      <td><input type="number" class="item-qty" min="0" value="0" onchange="updateCart()"></td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td class="item-name">Decaf</td>
+      <td>Rs.<span class="item-price">300</span></td>
+      <td><input type="number" class="item-qty" min="0" value="0" onchange="updateCart()"></td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td class="item-name">Cold Coffee</td>
+      <td>Rs.<span class="item-price">600</span></td>
+      <td><input type="number" class="item-qty" min="0" value="0" onchange="updateCart()"></td>
+    </tr>
+  </table>
+
+  <!-- Cart Summary Container -->
+  <div class="cart-box">
+    <h2>YOUR CART</h2>
+    <ul id="cart-items">
+      <li>No items selected yet.</li>
+    </ul>
+    <h3>Total: Rs. <span id="cart-total">0</span></h3>
+    <button onclick="placeOrder()">Place Order</button>
+    <button onclick="resetCart()" class="clear-btn">Clear Cart</button>
+  </div>
+
+  <footer>
+    <p>Student Developer: Muhammad Abdullah Yousaf (26i-3071)</p>
+  </footer>
+
+  <script>
+    function updateCart() {
+      const names = document.querySelectorAll('.item-name');
+      const prices = document.querySelectorAll('.item-price');
+      const quantities = document.querySelectorAll('.item-qty');
+      
+      const cartList = document.getElementById('cart-items');
+      const totalElement = document.getElementById('cart-total');
+      
+      cartList.innerHTML = ''; // Clear existing list
+      let grandTotal = 0;
+      let hasItems = false;
+
+      for (let i = 0; i < names.length; i++) {
+        let qty = parseInt(quantities[i].value) || 0;
+        let price = parseInt(prices[i].textContent);
+        let itemName = names[i].textContent;
+
+        if (qty > 0) {
+          hasItems = true;
+          let itemSubtotal = qty * price;
+          grandTotal += itemSubtotal;
+
+          // Create list item for cart summary
+          let li = document.createElement('li');
+          li.textContent = `${itemName} x ${qty} = Rs. ${itemSubtotal}`;
+          cartList.appendChild(li);
+        }
+      }
+
+      if (!hasItems) {
+        cartList.innerHTML = '<li>No items selected yet.</li>';
+      }
+
+      totalElement.textContent = grandTotal;
+    }
+
+    function placeOrder() {
+      const total = document.getElementById('cart-total').textContent;
+      if (parseInt(total) === 0) {
+        alert("Please add at least one item to your cart before ordering!");
+      } else {
+        alert(`Order Placed Successfully!\nTotal Amount: Rs. ${total}`);
+        resetCart();
+      }
+    }
+
+    function resetCart() {
+      const quantities = document.querySelectorAll('.item-qty');
+      quantities.forEach(input => input.value = 0);
+      updateCart();
+    }
+  </script>
 </body>
 </html>
