@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="style.css">
+  <title>Coffee Shack - Contact Us</title>
+</head>
+<body>
+  <nav>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="menu.html">Menu</a></li>
+    <li><a href="contact.html">Contact Us</a></li>
+  </ul>
+</nav>
+  <img src="Images\coffee.jfif" width="1000px" height="750px">
+  
+  <h1>CONTACT US</h1>
+  
+  <div class="contact-info">
+    <p><strong>Address:</strong> FAST NUCES, A.K. Brohi Road, H-11/4, Islamabad</p>
+    <p><strong>Phone:</strong> +92 300 1234567</p>
+    <p><strong>Email:</strong> 26i3071@isb.nu.edu.pk</p>
+    <p><strong>Hours:</strong> Mon - Sat: 8:00 AM - 10:00 PM</p>
+  </div>
+
+  <h2>Send Us a Message</h2>
+  
+  <form onsubmit="sendMessage(event)">
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" required><br><br>
+
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" required><br><br>
+
+    <label for="message">Message:</label><br>
+    <textarea id="message" rows="5" required></textarea><br><br>
+
+    <button type="submit">Send Message</button>
+  </form>
+
+  <p><a href="index.html">Back to Home</a> | <a href="menu.html">View Menu</a></p>
+
+  <footer>
+    <p>Student Developer: Muhammad Abdullah Yousaf (26i-3071)</p>
+  </footer>
+
+  <script>
+    function sendMessage(event) {
+      event.preventDefault();
+      alert("Thank you for reaching out! We will get back to you soon.");
+    }
+  </script>
+</body>
+</html>
